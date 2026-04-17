@@ -1,0 +1,25 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDEFF5" />
+      <stop offset="100%" stop-color="#FFF5F9" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgGrad)" />
+  <circle cx="1300" cy="150" r="120" fill="#F9D6E8" opacity="0.75" />
+  <circle cx="300" cy="200" r="90" fill="#F7A8C8" opacity="0.65" />
+  <circle cx="150" cy="700" r="120" fill="#F5C1E0" opacity="0.8" />
+  <circle cx="1450" cy="750" r="100" fill="#FFD3E5" opacity="0.7" />
+  <g opacity="0.95">
+    <path d="M340 100C320 90 300 110 295 135C285 165 315 175 335 160C350 145 360 130 340 100Z" fill="#F45B9A" />
+    <path d="M520 220C500 210 480 230 475 255C465 285 495 295 515 280C530 265 540 250 520 220Z" fill="#E664B8" />
+    <path d="M860 120C840 110 820 130 815 155C805 185 835 195 855 180C870 165 880 150 860 120Z" fill="#F98DC4" />
+  </g>
+  <g opacity="0.85">
+    <path d="M1100 600C1080 590 1060 610 1055 635C1045 665 1075 675 1095 660C1110 645 1120 630 1100 600Z" fill="#EAA2C9" />
+    <path d="M700 550C680 540 660 560 655 585C645 615 675 625 695 610C710 595 720 580 700 550Z" fill="#F1AFD6" />
+    <path d="M450 780C430 770 410 790 405 815C395 845 425 855 445 840C460 825 470 810 450 780Z" fill="#EBC0DD" />
+  </g>
+  <path d="M100 450C120 420 180 410 220 440C260 470 260 530 220 560C180 590 120 580 100 550C80 520 80 480 100 450Z" fill="#F4B1D9" opacity="0.7" />
+  <path d="M1400 430C1420 400 1480 390 1520 420C1560 450 1560 510 1520 540C1480 570 1420 560 1400 530C1380 500 1380 460 1400 430Z" fill="#F8C4DF" opacity="0.7" />
+</svg>
