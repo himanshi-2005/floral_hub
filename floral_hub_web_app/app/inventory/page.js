@@ -19,9 +19,8 @@ export default function InventoryPage () {
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setFlowers(JSON.parse(saved));
-    }
+    const savedFlowers = saved ? JSON.parse(saved) : [];
+    setFlowers(savedFlowers);
 
     async function loadFlowers() {
       setLoading(true);
@@ -29,7 +28,17 @@ export default function InventoryPage () {
       try {
         const response = await fetch(API_URL);
         const json = await response.json();
-        setFlowers(Array.isArray(json.data) ? json.data : []);
+        const apiFlowers = Array.isArray(json.data) ? json.data : [];
+
+        const savedById = new Map(savedFlowers.map((flower) => [String(flower.id), flower]));
+        const mergedFlowers = [
+          ...apiFlowers.map((flower) => savedById.get(String(flower.id)) || flower),
+          ...savedFlowers.filter(
+            (flower) => !apiFlowers.some((item) => String(item.id) === String(flower.id))
+          ),
+        ];
+
+        setFlowers(mergedFlowers);
       } catch (fetchError) {
         setError("Unable to load flowers from the API.");
       } finally {
@@ -68,6 +77,8 @@ export default function InventoryPage () {
     setFlowers((current) => current.filter((flower) => flower.id !== id));
   }
 
+  const showErrorOnly = Boolean(error && flowers.length === 0);
+
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-8">
       <div className="rounded-3xl bg-white/90 p-8 shadow-lg ring-1 ring-pink-200">
@@ -102,12 +113,19 @@ export default function InventoryPage () {
             <div className="rounded-3xl bg-white/90 p-8 text-center text-gray-600 shadow-sm ring-1 ring-pink-200">
               Loading flowers from the API...
             </div>
-          ) : error ? (
+          ) : showErrorOnly ? (
             <div className="rounded-3xl bg-red-50 p-8 text-center text-red-700 shadow-sm ring-1 ring-red-200">
               {error}
             </div>
           ) : (
-            <FlowerList flowers={filteredFlowers} onDelete={handleDeleteFlower} />
+            <>
+              {error ? (
+                <div className="rounded-3xl bg-red-50 p-5 text-sm text-red-700 shadow-sm ring-1 ring-red-200">
+                  {error}
+                </div>
+              ) : null}
+              <FlowerList flowers={filteredFlowers} onDelete={handleDeleteFlower} />
+            </>
           )}
         </section>
 
